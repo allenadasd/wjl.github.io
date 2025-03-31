@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星河流量 - 小红书专业引流陪跑团队</title>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --secondary-color: #2f3542;
+            --accent-color: #70a1ff;
+            --text-color: #f1f2f6;
+            --background-color: #1e272e;
+            --card-bg: rgba(47, 53, 66, 0.8);
+            --gradient-1: linear-gradient(135deg, #ff4757, #5352ed);
+            --gradient-2: linear-gradient(135deg, #70a1ff, #1e90ff);
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(30, 39, 46, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo svg {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-1);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            background: var(--gradient-1);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn svg {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.5);
+        }
+        
+        /* 英雄区 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(112, 161, 255, 0.1) 0%, rgba(30, 39, 46, 0) 70%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .hero-content {
+            width: 50%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-title span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        /* 粒子动画 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation: moveParticle 15s linear infinite;
+        }
+        
+        .particle:nth-child(2) {
+            top: 40%;
+            left: 60%;
+            animation: moveParticle 20s linear infinite;
+        }
+        
+        .particle:nth-child(3) {
+            top: 70%;
+            left: 30%;
+            animation: moveParticle 25s linear infinite;
+        }
+        
+        .particle:nth-child(4) {
+            top: 30%;
+            left: 80%;
+            animation: moveParticle 18s linear infinite;
+        }
+        
+        .particle:nth-child(5) {
+            top: 60%;
+            left: 70%;
+            animation: moveParticle 22s linear infinite;
+        }
+        
+        @keyframes moveParticle {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(100px, 50px);
+            }
+            50% {
+                transform: translate(50px, 100px);
+            }
+            75% {
+                transform: translate(-50px, 50px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        
+        /* 服务部分 */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .section-title span {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            height: 100%;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .service-link svg {
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+            transition: var(--transition);
+        }
+        
+        .service-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .service-link:hover svg {
+            transform: translateX(5px);
+        }
+        
+        /* 实力展示 */
+        .features {
+            background: var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .features-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-card {
+            background: rgba(30, 39, 46, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-1);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .stat-number::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 71, 87, 0.1);
+            border-radius: 50%;
+            top: -5px;
+            left: -15px;
+            z-index: -1;
+        }
+        
+        .stat-title {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: var(--accent-color);
+        }
+        
+        .feature-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .feature-content p {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* 案例展示 */
+        .case-studies {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .case-card {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .case-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .case-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            transition: var(--transition);
+        }
+        
+        .case-card:hover .case-image {
+            transform: scale(1.1);
+        }
+        
+        .case-card:hover .case-overlay {
+            background: linear-gradient(to top, rgba(255, 71, 87, 0.8), transparent);
+        }
+        
+        .case-category {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .case-category svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+        
+        .case-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .case-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* 团队介绍 */
+        .team {
+            background: var(--secondary-color);
+            position: relative;
+        }
+        
+        .team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-image-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .team-card:hover .team-image {
+            transform: scale(1.1);
+        }
+        
+        .team-info {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .team-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 3px;
+        }
+        
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .team-position {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .team-position svg {
+            width: 14px;
+            height: 14px;
+            margin-right: 5px;
+        }
+        
+        .team-bio {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 价格方案 */
+        .pricing {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .pricing::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(112, 161, 255, 0.1) 0%, rgba(30, 39, 46, 0) 70%);
+            z-index: 0;
+        }
+        
+        .pricing::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.05) 0%, rgba(30, 39, 46, 0) 70%);
+            z-index: 0;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            transform: rotate(45deg) translate(30px, -70px);
+            z-index: 0;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-tag {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .pricing-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .pricing-price::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+        
+        .pricing-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        .pricing-features li svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            color: var(--accent-color);
+            flex-shrink: 0;
+        }
+        
+        .pricing-button {
+            display: block;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 联系我们 */
+        .contact {
+            background: var(--secondary-color);
+            position: relative;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="45" y="45" width="10" height="10" fill="rgba(255,255,255,0.03)"/></svg>');
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .contact-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .contact-title span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .contact-text {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-details li svg {
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-sizing: content-box;
+        }
+        
+        .contact-form {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(112, 161, 255, 0.1) 0%, rgba(30, 39, 46, 0) 70%);
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .form-control {
+            width: 100%;
+            background: rgba(30, 39, 46, 0.8);
+            border: 1px solid rgba(112, 161, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(112, 161, 255, 0.2);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: var(--background-color);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-about .logo {
+            margin-bottom: 20px;
+            display: inline-flex;
+        }
+        
+        .footer-about p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient-1);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--text-color);
+            opacity: 0.8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            opacity: 1;
+        }
+        
+        .footer-links a:hover svg {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .footer-social a svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .footer-social a:hover {
+            background: var(--gradient-1);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* 二级页面共用样式 */
+        .page-header {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--secondary-color);
+            padding-top: 80px;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 3px;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb-separator {
+            margin: 0 10px;
+            opacity: 0.5;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero-content {
+                width: 100%;
+                text-align: center;
+                padding: 0 20px;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        /* 服务详情页特有样式 */
+        .service-detail-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .service-detail-content {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .service-detail-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .service-detail-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 3px;
+        }
+        
+        .service-detail-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .service-detail-features {
+            margin: 40px 0;
+        }
+        
+        .service-detail-features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        .process-steps {
+            margin: 40px 0;
+        }
+        
+        .process-steps h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .step-list {
+            list-style: none;
+            position: relative;
+        }
+        
+        .step-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15px;
+            height: 100%;
+            width: 2px;
+            background: var(--gradient-1);
+            opacity: 0.3;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .step-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .service-detail-cta {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .service-detail-sidebar {
+            align-self: start;
+        }
+        
+        .sidebar-widget {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .sidebar-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-1);
+        }
+        
+        .sidebar-services {
+            list-style: none;
+        }
+        
+        .sidebar-services li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+        
+        .sidebar-services li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        
+        .sidebar-services a {
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .sidebar-services a svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        .sidebar-services a:hover {
+            color: var(--primary-color);
+        }
+        
+        .sidebar-services a:hover svg {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .sidebar-cta {
+            text-align: center;
+            padding: 30px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .sidebar-cta-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-cta-text {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .sidebar-cta .btn {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-cta .btn:hover {
+            background: var(--background-color);
+            color: white;
+        }
+        
+        .testimonial-card {
+            position: relative;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(30, 39, 46, 0.5);
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            opacity: 0.2;
+            color: var(--primary-color);
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-info h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-info p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 992px) {
+            .service-detail-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12" y2="16"/>
+                    </svg>
+                    星河流量
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="#services">服务</a></li>
+                    <li><a href="#features">我们的实力</a></li>
+                    <li><a href="#cases">成功案例</a></li>
+                    <li><a href="#team">团队介绍</a></li>
+                    <li><a href="#pricing">价格方案</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+                <a href="#contact" class="btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    立即咨询
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="hero" id="home">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">小红书专业<span>流量陪跑</span>，助您快速<span>破圈引流</span></h1>
+                <p class="hero-subtitle">我们是领先的小红书全类目流量增长专家，帮助品牌和个人号实现快速涨粉、精准引流、高效变现。专业团队7*24小时陪跑服务，让您的小红书账号迅速破圈！</p>
+                <a href="#services" class="btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 16 16 12 12 8"/>
+                        <line x1="8" y1="12" x2="16" y2="12"/>
+                    </svg>
+                    了解我们的服务
+                </a>
+            </div>
+            <div class="hero-image">
+                <svg class="floating" width="500" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 手机外壳 -->
+                    <rect x="150" y="50" width="200" height="350" rx="20" fill="#2f3542" stroke="#70a1ff" stroke-width="3"/>
+                    <!-- 屏幕 -->
+                    <rect x="160" y="70" width="180" height="310" rx="10" fill="#1e272e"/>
+                    <!-- 小红书界面元素 -->
+                    <rect x="170" y="90" width="160" height="100" rx="5" fill="#ff4757" opacity="0.8"/>
+                    <circle cx="250" cy="150" r="30" fill="white" opacity="0.8"/>
+                    <rect x="170" y="200" width="160" height="20" rx="3" fill="white" opacity="0.6"/>
+                    <rect x="170" y="230" width="120" height="15" rx="3" fill="white" opacity="0.4"/>
+                    <rect x="170" y="255" width="160" height="1" fill="white" opacity="0.2"/>
+                    
+                    <!-- 数据流动效果 -->
+                    <circle cx="180" cy="280" r="5" fill="#70a1ff" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="cx" values="180;320;180" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="200" cy="300" r="3" fill="#ff4757" opacity="0.6">
+                        <animate attributeName="opacity" values="0.6;0.1;0.6" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="cx" values="200;300;200" dur="5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="220" cy="320" r="4" fill="#70a1ff" opacity="0.7">
+                        <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.5s" repeatCount="indefinite"/>
+                        <animate attributeName="cx" values="220;280;220" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- 连接线 -->
+                    <path d="M350 200 C400 150, 450 250, 500 150" stroke="#70a1ff" stroke-width="2" stroke-dasharray="5,5" opacity="0.6">
+                        <animate attributeName="d" values="M350 200 C400 150, 450 250, 500 150; M350 200 C400 250, 450 150, 500 200; M350 200 C400 150, 450 250, 500 150" dur="10s" repeatCount="indefinite"/>
+                    </path>
+                    <path d="M350 220 C420 250, 440 200, 500 250" stroke="#ff4757" stroke-width="2" stroke-dasharray="5,5" opacity="0.5">
+                        <animate attributeName="d" values="M350 220 C420 250, 440 200, 500 250; M350 220 C420 180, 440 250, 500 200; M350 220 C420 250, 440 200, 500 250" dur="12s" repeatCount="indefinite"/>
+                    </path>
+                    
+                    <!-- 数据可视化图表 -->
+                    <rect x="370" y="100" width="100" height="80" rx="5" fill="#2f3542" stroke="#70a1ff" stroke-width="1"/>
+                    <line x1="380" y1="160" x2="380" y2="120" stroke="#ff4757" stroke-width="3"/>
+                    <line x1="390" y1="160" x2="390" y2="130" stroke="#70a1ff" stroke-width="3"/>
+                    <line x1="400" y1="160" x2="400" y2="110" stroke="#ff4757" stroke-width="3"/>
+                    <line x1="410" y1="160" x2="410" y2="125" stroke="#70a1ff" stroke-width="3"/>
+                    <line x1="420" y1="160" x2="420" y2="105" stroke="#ff4757" stroke-width="3"/>
+                    <line x1="430" y1="160" x2="430" y2="115" stroke="#70a1ff" stroke-width="3"/>
+                    <line x1="440" y1="160" x2="440" y2="105" stroke="#ff4757" stroke-width="3"/>
+                    <line x1="450" y1="160" x2="450" y2="120" stroke="#70a1ff" stroke-width="3"/>
+                    <line x1="460" y1="160" x2="460" y2="100" stroke="#ff4757" stroke-width="3"/>
+                    
+                    <!-- 装饰元素 -->
+                    <circle cx="70" cy="120" r="40" fill="url(#grad1)" opacity="0.5"/>
+                    <circle cx="100" cy="250" r="30" fill="url(#grad2)" opacity="0.4"/>
+                    <circle cx="50" cy="350" r="25" fill="url(#grad1)" opacity="0.3"/>
+                    
+                    <!-- 渐变定义 -->
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ff4757" stop-opacity="1"/>
+                            <stop offset="100%" stop-color="#5352ed" stop-opacity="1"/>
+                        </linearGradient>
+                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#70a1ff" stop-opacity="1"/>
+                            <stop offset="100%" stop-color="#1e90ff" stop-opacity="1"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务介绍 -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">我们提供的<span>专业服务</span></h2>
+                <p class="section-subtitle">从账号定位到内容创作，从流量获取到变现方案，我们提供全方位的小红书增长服务</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                        <line x1="9" y1="9" x2="9.01" y2="9"/>
+                        <line x1="15" y1="9" x2="15.01" y2="9"/>
+                    </svg>
+                    <h3 class="service-title">账号诊断与定位</h3>
+                    <p class="service-description">专业分析您的账号现状，针对不同行业和目标受众，制定个性化的账号定位和发展策略，让您的小红书之路更加清晰明确。</p>
+                    <a href="service-diagnosis.html" class="service-link">
+                        了解更多
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    <h3 class="service-title">爆款内容策划</h3>
+                    <p class="service-description">研究平台算法和热门趋势，为您量身定制爆款内容策略，包括选题方向、创作模式、风格定位等，确保内容更容易被推荐。</p>
+                    <a href="service-content.html" class="service-link">
+                        了解更多
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                    </svg>
+                    <h3 class="service-title">精准引流方案</h3>
+                    <p class="service-description">根据您的目标客户群体，制定精准的引流策略，通过话题布局、互动运营、社群管理等多种手段，实现高质量精准流量引入。</p>
+                    <a href="service-traffic.html" class="service-link">
+                        了解更多
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <h3 class="service-title">陪跑成长服务</h3>
+                    <p class="service-description">专业顾问7*24小时全程陪跑，及时调整优化策略，解决运营过程中的各种问题，确保您的账号持续稳定增长。</p>
+                    <a href="service-growth.html" class="service-link">
+                        了解更多
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <h3 class="service-title">变现模式优化</h3>
+                    <p class="service-description">根据您的账号特点和行业属性，定制最适合的变现模式，从商品橱窗、品牌合作到私域转化，让流量真正创造价值。</p>
+                    <a href="service-monetize.html" class="service-link">
+                        了解更多
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                    <h3 class="service-title">数据分析与优化</h3>
+                    <p class="service-description">专业团队定期分析账号数据表现，通过科学的数据分析方法，不断优化运营策略，让每一次发布都更接近爆款。</p>
+                    <a href="service-analytics.html" class="service-link">
+                        了解更多
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队实力 -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="features-content">
+                <div class="section-header">
+                    <h2 class="section-title">为什么选择<span>星河流量</span></h2>
+                    <p class="section-subtitle">数据驱动，专业陪跑，助您在小红书平台快速破圈引流</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-title">成功案例</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98.7%</div>
+                        <div class="stat-title">客户满意度</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-title">覆盖行业</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-title">全天候服务</div>
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h3>专业陪跑团队</h3>
+                            <p>拥有多年小红书运营经验的专业团队，熟悉平台规则和算法机制，能够为不同行业客户提供精准的引流方案。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 11 12 14 22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h3>全方位服务体系</h3>
+                            <p>从账号定位、内容创作到流量引入、数据分析，提供一站式服务，让您无需操心繁琐的运营细节。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h3>数据驱动决策</h3>
+                            <p>通过专业的数据分析工具，实时监控账号表现，根据数据洞察优化运营策略，确保每一步都有科学依据。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="18" r="3"/>
+                            <circle cx="6" cy="6" r="3"/>
+                            <path d="M13 6h3a2 2 0 0 1 2 2v7"/>
+                            <line x1="6" y1="9" x2="6" y2="21"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h3>行业资源对接</h3>
+                            <p>拥有丰富的行业资源和人脉网络，可以为您对接相关品牌合作、达人合作等资源，加速账号增长。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.827 2.827 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h3>结果导向服务</h3>
+                            <p>我们不仅关注流量数据，更注重实际转化效果，确保引流的精准性和有效性，真正帮助您实现商业目标。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <div class="feature-content">
+                            <h3>持续学习更新</h3>
+                            <p>团队定期学习平台最新动态和算法变化，不断更新优化策略，确保方案始终走在行业前沿。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功案例 -->
+    <section class="section case-studies" id="cases">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">我们的<span>成功案例</span></h2>
+                <p class="section-subtitle">来自各行各业的客户通过我们的服务实现了快速增长</p>
+            </div>
+            <div class="case-grid">
+                <div class="case-card">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'><rect width='600' height='800' fill='%23ff4757' opacity='0.3'/><circle cx='300' cy='250' r='100' fill='white' opacity='0.6'/><rect x='200' y='380' width='200' height='20' rx='5' fill='white' opacity='0.8'/><rect x='150' y='420' width='300' height='15' rx='5' fill='white' opacity='0.6'/><rect x='180' y='450' width='240' height='15' rx='5' fill='white' opacity='0.6'/><rect x='220' y='480' width='160' height='15' rx='5' fill='white' opacity='0.6'/><rect x='150' y='530' width='300' height='80' rx='5' fill='white' opacity='0.3'/><circle cx='180' cy='600' r='20' fill='white' opacity='0.5'/><rect x='220' y='590' width='200' height='10' rx='5' fill='white' opacity='0.5'/><rect x='220' y='610' width='150' height='10' rx='5' fill='white' opacity='0.5'/><circle cx='150' cy='700' r='40' fill='white' opacity='0.2'/><circle cx='450' cy='650' r='50' fill='white' opacity='0.1'/><circle cx='400' cy='150' r='30' fill='white' opacity='0.2'/><circle cx='180' cy='100' r='20' fill='white' opacity='0.3'/></svg>" alt="美妆账号案例" class="case-image">
+                    <div class="case-overlay">
+                        <div class="case-category">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="22" y1="12" x2="18" y2="12"/>
+                                <line x1="6" y1="12" x2="2" y2="12"/>
+                                <line x1="12" y1="6" x2="12" y2="2"/>
+                                <line x1="12" y1="22" x2="12" y2="18"/>
+                            </svg>
+                            美妆护肤
+                        </div>
+                        <h3 class="case-title">从0到10万粉，美妆号3个月突破行业天花板</h3>
+                        <p class="case-description">通过精准的内容策划和话题布局，帮助客户从零开始，3个月内积累10万+粉丝，月均曝光量破500万，成功对接多个品牌合作。</p>
+                        <a href="case-beauty.html" class="btn">查看详情</a>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'><rect width='600' height='800' fill='%2370a1ff' opacity='0.3'/><circle cx='300' cy='230' r='80' fill='white' opacity='0.5'/><rect x='150' y='340' width='300' height='200' rx='10' fill='white' opacity='0.4'/><rect x='170' y='360' width='260' height='20' rx='5' fill='white' opacity='0.9'/><rect x='170' y='390' width='260' height='15' rx='5' fill='white' opacity='0.7'/><rect x='170' y='415' width='200' height='15' rx='5' fill='white' opacity='0.7'/><rect x='170' y='440' width='240' height='15' rx='5' fill='white' opacity='0.7'/><line x1='150' y1='580' x2='450' y2='580' stroke='white' stroke-width='2' opacity='0.5'/><circle cx='180' cy='620' r='15' fill='white' opacity='0.6'/><rect x='210' y='610' width='150' height='10' rx='5' fill='white' opacity='0.6'/><rect x='210' y='630' width='100' height='10' rx='5' fill='white' opacity='0.6'/><circle cx='180' cy='670' r='15' fill='white' opacity='0.6'/><rect x='210' y='660' width='170' height='10' rx='5' fill='white' opacity='0.6'/><rect x='210' y='680' width='120' height='10' rx='5' fill='white' opacity='0.6'/><circle cx='450' cy='150' r='50' fill='white' opacity='0.2'/><circle cx='150' cy='700' r='30' fill='white' opacity='0.3'/></svg>" alt="餐饮账号案例" class="case-image">
+                    <div class="case-overlay">
+                        <div class="case-category">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                                <line x1="6" y1="1" x2="6" y2="4"/>
+                                <line x1="10" y1="1" x2="10" y2="4"/>
+                                <line x1="14" y1="1" x2="14" y2="4"/>
+                            </svg>
+                            餐饮美食
+                        </div>
+                        <h3 class="case-title">本地餐厅月增客流300%，线上转化显著</h3>
+                        <p class="case-description">为本地餐厅打造特色内容矩阵，实现月均10w+曝光，线下引流效果显著，客流量提升300%，品牌知名度大幅提升。</p>
+                        <a href="case-restaurant.html" class="btn">查看详情</a>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'><rect width='600' height='800' fill='%235352ed' opacity='0.3'/><rect x='150' y='150' width='300' height='400' rx='10' fill='white' opacity='0.4'/><rect x='170' y='170' width='260' height='30' rx='5' fill='white' opacity='0.9'/><rect x='170' y='220' width='260' height='20' rx='5' fill='white' opacity='0.7'/><rect x='170' y='250' width='260' height='20' rx='5' fill='white' opacity='0.7'/><rect x='170' y='280' width='200' height='20' rx='5' fill='white' opacity='0.7'/><line x1='170' y1='320' x2='430' y2='320' stroke='white' stroke-width='2' opacity='0.5'/><circle cx='200' cy='350' r='15' fill='white' opacity='0.6'/><rect x='230' y='340' width='150' height='10' rx='5' fill='white' opacity='0.6'/><rect x='230' y='360' width='100' height='10' rx='5' fill='white' opacity='0.6'/><circle cx='200' cy='400' r='15' fill='white' opacity='0.6'/><rect x='230' y='390' width='170' height='10' rx='5' fill='white' opacity='0.6'/><rect x='230' y='410' width='120' height='10' rx='5' fill='white' opacity='0.6'/><circle cx='200' cy='450' r='15' fill='white' opacity='0.6'/><rect x='230' y='440' width='150' height='10' rx='5' fill='white' opacity='0.6'/><rect x='230' y='460' width='100' height='10' rx='5' fill='white' opacity='0.6'/><circle cx='200' cy='500' r='15' fill='white' opacity='0.6'/><rect x='230' y='490' width='170' height='10' rx='5' fill='white' opacity='0.6'/><rect x='230' y='510' width='120' height='10' rx='5' fill='white' opacity='0.6'/><circle cx='450' cy='600' r='50' fill='white' opacity='0.2'/><circle cx='150' cy='650' r='30' fill='white' opacity='0.3'/><rect x='180' y='600' width='240' height='120' rx='10' fill='white' opacity='0.3'/></svg>" alt="教育账号案例" class="case-image">
+                    <div class="case-overlay">
+                        <div class="case-category">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            </svg>
+                            教育培训
+                        </div>
+                        <h3 class="case-title">教育机构单条爆款获赞10万+，招生转化率提升200%</h3>
+                        <p class="case-description">针对教育行业特点，打造高价值干货内容，单条爆款笔记获赞10万+，粉丝精准度高，招生转化率提升200%。</p>
+                        <a href="case-education.html" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队介绍 -->
+    <section class="section team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">专业的<span>服务团队</span></h2>
+                <p class="section-subtitle">一群热爱小红书、精通运营的专业人士</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23ff4757' opacity='0.2'/><circle cx='200' cy='150' r='80' fill='%232f3542' opacity='0.7'/><rect x='120' y='250' width='160' height='180' rx='80' fill='%232f3542' opacity='0.7'/><rect x='160' y='100' width='80' height='10' rx='5' fill='white' opacity='0.6'/><rect x='130' y='150' width='50' height='5' rx='2' fill='white' opacity='0.6'/><rect x='220' y='150' width='50' height='5' rx='2' fill='white' opacity='0.6'/><path d='M170 170 Q200 190, 230 170' stroke='white' stroke-width='3' opacity='0.6' fill='none'/></svg>" alt="张明远" class="team-image">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">张明远</h3>
+                        <div class="team-position">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            创始人 / 首席策略官
+                        </div>
+                        <p class="team-bio">前某知名互联网公司高级运营总监，8年内容平台运营经验，擅长账号定位与增长策略，带领团队服务过500+头部客户。</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%2370a1ff' opacity='0.2'/><circle cx='200' cy='150' r='80' fill='%232f3542' opacity='0.7'/><rect x='120' y='250' width='160' height='180' rx='80' fill='%232f3542' opacity='0.7'/><rect x='170' y='130' width='60' height='7' rx='3' fill='white' opacity='0.6'/><rect x='150' y='150' width='30' height='5' rx='2' fill='white' opacity='0.6'/><rect x='220' y='150' width='30' height='5' rx='2' fill='white' opacity='0.6'/><path d='M170 180 Q200 200, 230 180' stroke='white' stroke-width='3' opacity='0.6' fill='none'/><path d='M150 110 Q200 160, 250 110' stroke='%232f3542' stroke-width='20' opacity='0.3' fill='none'/></svg>" alt="李慧琳" class="team-image">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">李慧琳</h3>
+                        <div class="team-position">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                                <path d="M2 2l7.586 7.586"/>
+                                <circle cx="11" cy="11" r="2"/>
+                            </svg>
+                            内容总监
+                        </div>
+                        <p class="team-bio">资深内容创作专家，曾创作多条千万级爆款，熟悉各行业内容策略，帮助客户打造符合平台调性的优质内容。</p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
